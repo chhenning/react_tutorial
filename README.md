@@ -26,3 +26,33 @@ This command installs:
 ??? `npm run eject`
 
 # Start App
+
+```
+cd react-app
+npm start
+```
+
+# React
+
+Components are written in [jsx](https://reactjs.org/docs/introducing-jsx.html).
+
+Babel will compile jsx into javascript. Try out on `https://babeljs.io/repl`
+
+```
+const e = <h1>Hello World</h1>
+```
+
+convereted into
+
+```
+"use strict";
+
+var e = React.createElement("h1", null, "Hello World");
+```
+
+## Hello World App
+
+1. Delete all files in `src/`.
+2. Add index.js
+
+The page will automatically reload via **Hot Module Browsing**.
