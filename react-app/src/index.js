@@ -1,6 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom";
+const person = {
+  name: "Mosh",
+  walk() {
+    console.log(this);
+  },
+  talk() {}
+};
 
-// part of Virtual DOM
-const element = <h1>Hello World</h1>;
-ReactDOM.render(element, document.getElementById("root"));
+const w = person.walk.bind(person);
+w();
+
+console.log("Hello");
