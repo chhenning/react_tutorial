@@ -6,12 +6,14 @@
 
    https://github.com/facebook/create-react-app
 
-3. Add some Visual Studio Code extensions
+   https://stackoverflow.com/questions/52823393/react-scripts-is-not-recognized-as-an-internal-or-external-command
+
+3) Add some Visual Studio Code extensions
 
    - simple react snippets
    - prettier
 
-4. Enable Format on Save in user settings
+4) Enable Format on Save in user settings
 
 # Create first app
 
@@ -125,4 +127,72 @@ walk_f() // will print undefined - because of strict mode
 ```
 const w = person.walk.bind(person);
 w() // now it works
+```
+
+## Arrow Functions
+
+```
+// Old
+const square = function(number)
+{
+    return number * number;
+}
+
+// New
+const square_new = (number) => number * number
+```
+
+Use full example
+
+```
+const jobs = [
+  { id: 1, isActive: true},
+  { id: 2, isActive: true},
+  { id: 3, isActive: false},
+]
+
+const a = jobs.filter( job => job.isActive );
+console.log(a)
+```
+
+## Arrow Functions and this
+
+```
+// Old
+const person = {
+  name: "Christian",
+  talk() {
+    var self = this;
+    setTimeout(function() {
+      console.log("this", self);
+    }, 1000);
+  }
+};
+
+person.talk();
+```
+
+```
+// New
+const person = {
+  name: "Christian",
+  talk() {
+    // Arrow functions don't rebind this keyword. It's inherited from the calling block.
+    setTimeout(() => console.log("this", this), 1000);
+  }
+};
+
+person.talk();
+```
+
+## Array map Method
+
+```
+const colors = ["red", "green", "blue"];
+const items = colors.map(c => "<li>" + c + "</li>");
+console.log(items);
+
+// template literal
+const items_better = colors.map(c => `<li>${c}</li>`);
+console.log(items_better);
 ```
