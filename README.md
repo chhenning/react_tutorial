@@ -196,3 +196,19 @@ console.log(items);
 const items_better = colors.map(c => `<li>${c}</li>`);
 console.log(items_better);
 ```
+
+## Object Destructuring
+
+```
+const address = {
+  street: "Hanne Nuete",
+  city: "",
+  country: ""
+};
+
+const { street, city, country } = address;
+
+// with alias
+const { street: st } = address;
+console.log(st);
+```
