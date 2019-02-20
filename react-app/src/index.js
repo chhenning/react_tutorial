@@ -1,11 +1,10 @@
-const address = {
-  street: "Hanne Nuete",
-  city: "",
-  country: ""
-};
+import { Person } from "./Person";
+import { Teacher } from "./Teacher";
 
-const { street, city, country } = address;
+const p = new Person("Christian");
+console.log(p);
 
-// with alias
-const { street: st } = address;
-console.log(st);
+const t = new Teacher("Sophie", "Master");
+console.log(t);
+t.walk();
+t.teach();

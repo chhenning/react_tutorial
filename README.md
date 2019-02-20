@@ -212,3 +212,128 @@ const { street, city, country } = address;
 const { street: st } = address;
 console.log(st);
 ```
+
+## Spread Operator
+
+```
+let first = [1, 2, 3];
+const second = [4, 5, 6];
+
+// old
+//const combined = first.concat(second);
+
+// combining two arrays:
+// new using Spread Operator ...
+const combined = [...first, "a", "Hello", ...second];
+first += "New";
+
+console.log(combined);
+console.log(first);
+
+// combining two objects
+const a = { Name: "Christian" };
+const b = { Job: "SW Eng" };
+const c = { ...a, ...b, Location: "NYC" };
+console.log(c);
+
+// cloning a
+const clone = { ...a };
+```
+
+## Classes and Inheritance
+
+```
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  walk() {
+    console.log("walk");
+  }
+}
+
+class Teacher extends Person {
+  constructor(name, degree) {
+    super(name);
+    this.degree = degree;
+  }
+
+  teach() {
+    console.log("teach");
+  }
+}
+
+const p = new Person("Christian");
+console.log(p);
+
+const t = new Teacher("Sophie", "Master");
+console.log(t);
+t.walk();
+t.teach();
+```
+
+## Modules
+
+Each file can be a module.
+
+Classes defined in a file are private by default.
+
+```
+// Person.js
+
+export class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  walk() {
+    console.log("walk");
+  }
+}
+
+```
+
+```
+// Teacher.js
+
+import { Person } from "./Person";
+
+export class Teacher extends Person {
+  constructor(name, degree) {
+    super(name);
+    this.degree = degree;
+  }
+
+  teach() {
+    console.log("teach");
+  }
+}
+```
+
+```
+// index.js
+import { Person } from "./Person";
+import { Teacher } from "./Teacher";
+
+const p = new Person("Christian");
+console.log(p);
+
+const t = new Teacher("Sophie", "Master");
+console.log(t);
+t.walk();
+t.teach();
+```
+
+## Default And Named Exports
+
+Default via `import ... from File`
+Named via `import { ... } from File`
+
+For example `import React, { Component } from 'react'`
+
+`react` is a module from 3rd party.
+
+`React` is default export
+
+`Component` is named export. Ctrl+Space to get a list.
