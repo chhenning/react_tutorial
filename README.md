@@ -34,7 +34,7 @@ cd react-app
 npm start
 ```
 
-# React
+# React Part 1
 
 Components are written in [jsx](https://reactjs.org/docs/introducing-jsx.html).
 
@@ -332,8 +332,39 @@ Named via `import { ... } from File`
 
 For example `import React, { Component } from 'react'`
 
-`react` is a module from 3rd party.
-
 `React` is default export
 
 `Component` is named export. Ctrl+Space to get a list.
+
+`react` is a module from 3rd party.
+
+# Bootstrap
+
+`npm i booststrap`
+`npm i booststrap@4.1.1`
+
+```
+// in index.js
+import 'bootstrap/dist/css/bootstrap.css'
+```
+
+# React Part 2
+
+the VSC extension simpleReactSnippets allows for some handy shortcuts
+
+`imrc` + tab
+`cc` + tab
+
+`return <h1>Hello World!</h1>;` is a jsx expression which will be made into `React.createElement()`
+
+## Embedding Expressions
+
+```
+// Alternative to <div>. There will be no <> in the final html.
+<React.Fragment>
+  <h1>Hello World!</h1>
+  <button>Increment</button>
+</React.Fragment>
+```
+
+In each component class `state` is a special object for storing the state, aka data.
