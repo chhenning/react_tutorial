@@ -368,3 +368,60 @@ the VSC extension simpleReactSnippets allows for some handy shortcuts
 ```
 
 In each component class `state` is a special object for storing the state, aka data.
+
+## Setting Attributes
+
+`className` instead of `class`.
+
+### Styles
+
+```
+// Add a styles object to class, just like state
+
+// Must be camel notation!
+  styles = {
+    fontSize: 20,
+    fontWeight: "bold"
+  };
+
+...
+    <span style={this.styles} className="badge badge-primary m-2">
+      {this.formatCount()}
+    </span>
+...
+```
+
+Inline Styles
+
+```
+    <span style={ { fontSize: 20 } } className="badge badge-primary m-2">
+      {this.formatCount()}
+    </span>
+```
+
+## Rendering List
+
+```
+  state = {
+    count: 0,
+    tags: ["tag1", "tag2", "tag3"]
+  };
+
+// in render()
+
+  <ul>
+    {this.state.tags.map(t => (
+      <li>{t}</li>
+    ))}
+  </ul>
+```
+
+Each list item needs an ID, in this case the tag name is unique and so we can use it as the ID.
+
+```
+  <ul>
+    {this.state.tags.map(t => (
+      <li key={t}>{t}</li>
+    ))}
+  </ul>
+```
