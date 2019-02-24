@@ -11,3 +11,7 @@ Hello WorldHello Worldw
 # Refactor
 
 Select some lines of code and right click to select `refactor`. A popup appears to move the code into a method.
+
+# Shortcuts
+
+Ctrl W -- Close Current Document
