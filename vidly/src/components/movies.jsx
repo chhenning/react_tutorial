@@ -1,24 +1,33 @@
 import React, { Component } from "react";
 
-import { getMovies } from "../services/fakeMovieService";
+import { getMovies, deleteMovie } from "../services/fakeMovieService";
 
 class Movies extends Component {
   state = { movies: getMovies() };
 
   handleDelete = movie => {
-    console.log(movie._id);
+    // make a copy of the movies array excluding the one to be deleted
+    const movies = this.state.movies.filter(m => m._id !== movie._id);
+
+    // update the state of the component by overriding the current movie array.
+    this.setState({ movies: movies });
   };
 
   render() {
-    return (
-      <div>
-        <h1>Showing {this.state.movies.length} movies in the database.</h1>
-        <table className="table">
-          <thead>{this.getTableHeader()}</thead>
-          <tbody>{this.state.movies.map(m => this.getMovieRow(m))}</tbody>
-        </table>
-      </div>
-    );
+    const { length: movie_count } = this.state.movies;
+
+    if (movie_count === 0) return <p>There are no movies in the database.</p>;
+    else
+      return (
+        <div>
+          <p>Showing {movie_count} movies in the database.</p>
+
+          <table className="table">
+            <thead>{this.getTableHeader()}</thead>
+            <tbody>{this.state.movies.map(m => this.getMovieRow(m))}</tbody>
+          </table>
+        </div>
+      );
   }
 
   getTableHeader() {
@@ -44,7 +53,7 @@ class Movies extends Component {
         <td>
           <button
             onClick={() => this.handleDelete(movie)}
-            className="btn btn-danger"
+            className="btn btn-danger btn-sm"
           >
             Delete
           </button>

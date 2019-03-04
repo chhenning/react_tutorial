@@ -199,6 +199,21 @@ handleIncrement = () => {
 };
 ```
 
+### Deleting an element from an array
+
+```
+handleDelete = movie => {
+  // make a copy of the movies array excluding the one to be deleted
+  const movies = this.state.movies.filter(m => m._id !== movie._id);
+
+  // update the state of the component by overriding the current movie array.
+  this.setState({ movies: movies });
+
+  // OR a little shorter
+  this.setState({ movies });
+};
+```
+
 ## Passing an argument into handler function
 
 Using arrow function:
