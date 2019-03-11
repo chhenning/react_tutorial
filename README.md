@@ -221,3 +221,100 @@ Using arrow function:
 ```
 onClick={() => this.handleIncrement(1)}
 ```
+
+## Passing data into a component
+
+Every React component has a `props` object.
+
+```
+// creating a Component
+{this.state.counters.map(c => (
+  <Counter key={c.id} value={c.value} selected={true} />
+))}
+```
+
+The Counter's `props` object will have the data stored.
+
+```
+state = {
+  value: this.props.value
+};
+```
+
+### Passing Children into a component
+
+Passing an h4 as children into Counter component.
+
+```
+<Counter key={c.id} value={c.value} selected={true}>
+  <h4>Counter #{c.id}</h4>
+</Counter>
+```
+
+There will be a new property `children` in the `props`.
+
+The children in this case is just an react element which can be rendered in the component like this:
+
+```
+render() {
+    return (
+      <div>
+        {this.props.children}
+      </div>
+    );
+  }
+```
+
+## Props vs State
+
+`State` is local and private to a component.
+
+`Props` is used to pass data into a component. It is also read only.
+
+## Raising Events
+
+Pass a callback into a component:
+
+```
+  \\ create new components
+  {this.state.counters.map(c => (
+    <Counter key={c.id} onDelete={this.handleDelete} counter={c} />
+  ))}
+
+  \\ member function
+  handleDelete = counterId => {
+    const counters = this.state.counters.filter(c => c.id !== counterId);
+    this.setState({ counters: counters });
+  };
+```
+
+Call the callback in component:
+
+```
+  <button
+    onClick={() => this.props.onDelete(id)}
+    className="btn btn-danger btn-sm m-2"
+  >
+    Delete
+  </button>
+```
+
+## Single Source Of Truth
+
+Setting a component's state correctly.
+
+Not the right way since we are make a copy of the value. This way we don't see updates to the value from the parent component.
+
+```
+  state = {
+    value: this.props.counter.value
+  };
+```
+
+A controlled component doesn't have a state. It only uses the readonly `props` to receive data and raises events in case the data changes.
+
+# Debugging
+
+react Chrome extension
+
+`$r` and `$0`

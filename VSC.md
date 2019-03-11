@@ -18,6 +18,8 @@ Ctrl W -- Close Current Document
 
 Ctrl Shift V -- Preview markdown
 
+Ctrl F4 -- Close current tab
+
 # Zen Coding
 
 Shortcut to create a complex html structure
