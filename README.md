@@ -75,6 +75,7 @@ the VSC extension simpleReactSnippets allows for some handy shortcuts
 
 `imrc` + tab
 `cc` + tab
+`sfc` + tab
 
 `return <h1>Hello World!</h1>;` is a jsx expression which will be made into `React.createElement()`
 
@@ -199,6 +200,8 @@ handleIncrement = () => {
 };
 ```
 
+`setState` can only be used of the constructor is done and the component is part of the DOM!!
+
 ### Deleting an element from an array
 
 ```
@@ -312,6 +315,88 @@ Not the right way since we are make a copy of the value. This way we don't see u
 ```
 
 A controlled component doesn't have a state. It only uses the readonly `props` to receive data and raises events in case the data changes.
+
+## Stateless Functional Component
+
+Instead of creating a stateless class a function can also be used. Use `sfc` + tab to create the skeleton.
+
+```
+const NavBar = props => {
+  return (
+    <nav className="navbar navbar-light bg-light">
+      <a className="navbar-brand" href="#">
+        Navbar{" "}
+        <span className="badge badge-pill badge-secondary">
+          {props.totalCounters}
+        </span>
+      </a>
+    </nav>
+  );
+};
+```
+
+# Lifecycle Hooks
+
+Interact with the lifecycle of a component. Starting, redrawing, destroying, etc.
+
+## Mount
+
+Following functions are called in order:
+
+### `constructor`
+
+Set state from props
+
+```
+// setting the state
+constructor(props) {
+  super(props);
+
+  this.state = this.props.something;
+
+  // DONT use setState
+}
+```
+
+### `render`
+
+### `componentDidMount`
+
+Component is rendered and part of the DOM. Perfect place to use AJAX to get data from server.
+
+```
+componentDidMount() {
+  // AJAX call
+
+  this.setState({ something });
+}
+```
+
+## Update
+
+Component's `state` or `props` changes.
+
+### `render`
+
+### `componentDidUpdate`
+
+```
+componentDidUpdate(prevProps, prevState) {
+  if(prevProps.counter.value !== props.counter.value) {
+    // Do something like an AJAX call
+  }
+}
+```
+
+## Unmount
+
+Component will be removed from the DOM.
+
+### `componentWillUnmount`
+
+Called just before the component is removed from the DOM.
+
+##
 
 # Debugging
 
