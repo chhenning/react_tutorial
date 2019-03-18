@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import Liked from "./common/liked";
 
-import { getMovies, deleteMovie } from "../services/fakeMovieService";
+import { getMovies } from "../services/fakeMovieService";
 
 class Movies extends Component {
   state = { movies: getMovies() };
@@ -31,7 +32,7 @@ class Movies extends Component {
   }
 
   getTableHeader() {
-    const headers = ["Title", "Genre", "Stock", "Rating", ""];
+    const headers = ["Title", "Genre", "Stock", "Rating", "Liked", ""];
     return (
       <tr>
         {headers.map(h => (
@@ -43,6 +44,14 @@ class Movies extends Component {
     );
   }
 
+  handleLikedClick = movie => {
+    const movies = [...this.state.movies];
+    const index = movies.indexOf(movie);
+    movies[index] = { ...movies[index] };
+    movies[index].liked = !movies[index].liked;
+    this.setState({ movies });
+  };
+
   getMovieRow(movie) {
     return (
       <tr key={movie._id}>
@@ -50,6 +59,12 @@ class Movies extends Component {
         <td>{movie.genre.name}</td>
         <td>{movie.numberInStock}</td>
         <td>{movie.dailyRentalRate}</td>
+        <td>
+          <Liked
+            onLiked={() => this.handleLikedClick(movie)}
+            liked={movie.liked}
+          />
+        </td>
         <td>
           <button
             onClick={() => this.handleDelete(movie)}

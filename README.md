@@ -403,3 +403,9 @@ Called just before the component is removed from the DOM.
 react Chrome extension
 
 `$r` and `$0`
+
+# Fond Awesome
+
+We have installed version 4.7 as described in package.json. The examples on the websites use different css `fas`. In 4.7 it should be `fa`.
+
+When using font-awesome there is no need to import in anywhere.
