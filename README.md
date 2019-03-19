@@ -396,8 +396,6 @@ Component will be removed from the DOM.
 
 Called just before the component is removed from the DOM.
 
-##
-
 # Debugging
 
 react Chrome extension
@@ -409,3 +407,39 @@ react Chrome extension
 We have installed version 4.7 as described in package.json. The examples on the websites use different css `fas`. In 4.7 it should be `fa`.
 
 When using font-awesome there is no need to import in anywhere.
+
+# Small code pieces
+
+## Change Mouse Pointer
+
+```
+return (
+  <i onClick={onLiked} style={{ cursor: "pointer" }} className={classes} />
+);
+```
+
+# Errors
+
+## Maximum update depth exceeded. This can happen when a component repeatedly calls setState inside componentWillUpdate or componentDidUpdate. React limits the number of nested updates to prevent infinite loops.
+
+Call onLiked when only passing the reference is the right way.
+
+```
+return (
+  <i
+    onClick={this.props.onLiked()}
+    style={{ cursor: "pointer" }}
+    className={classes}
+  />
+);
+```
+
+Correct:
+
+```
+return (
+  <i onClick={this.props.onLiked}
+  style={{ cursor: "pointer" }}
+  className={classes} />
+);
+```
